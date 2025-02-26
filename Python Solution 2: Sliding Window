@@ -1,0 +1,21 @@
+class Solution:
+    def maxAbsoluteSum(self, nums: List[int]) -> int:
+        L = 0  
+        R = 0 
+        max_sum = 0
+        min_sum = 0
+        curr_max = 0
+        curr_min = 0
+        while R < len(nums):
+            curr_max += nums[R]
+            curr_min += nums[R]
+            max_sum = max(max_sum, curr_max)  
+            min_sum = min(min_sum, curr_min) 
+            if curr_max < 0:
+                curr_max = 0
+                L = R + 1 
+            if curr_min > 0:
+                curr_min = 0
+                L = R + 1 
+            R += 1 
+        return max(abs(max_sum), abs(min_sum)) 
